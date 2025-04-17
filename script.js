@@ -1,6 +1,7 @@
 const display = document.getElementById('display');
 const historyBox = document.getElementById('history');
 let history;
+let currentExpression = '';
 
 if (localStorage.getItem('saved')) {
     history = JSON.parse(localStorage.getItem('saved'));
@@ -8,34 +9,41 @@ if (localStorage.getItem('saved')) {
     history = [];
 }
 
+function updateDisplayForUser(expression) {
+    return expression.replace(/sqrt\(/g, '√(');
+}
+
 function appendValue(value) {
     if (display.value === 'Ошибка') {
         display.value = '';
     }
-    display.value += value;
+    currentExpression += value;
+    display.value = updateDisplayForUser(currentExpression);
 }
 
 function clearDisplay() {
     display.value = '';
+    currentExpression = '';
 }
 
 function deleteLast() {
     if (display.value === 'Ошибка') {
         display.value = '';
     }
-    display.value = display.value.slice(0, -1);
+    currentExpression = currentExpression.slice(0, -1);
+    display.value = updateDisplayForUser(currentExpression);
 }
 
 function calculate() {
-    if (display.value != "") {
+    if (currentExpression != "") {
         try {
             const expression = display.value;
-            display.value = math.evaluate(display.value);
-            const result = math.evaluate(expression);
+            const result = math.evaluate(currentExpression);
             display.value = result;
             addToHistory(expression, result);
         } catch {
             display.value = 'Ошибка';
+            currentExpression = '';
         }
     }
 }
