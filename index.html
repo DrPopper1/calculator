@@ -16,33 +16,33 @@
         <input type="text" class="display" id="display" disabled />
         <div class="history" id="history"></div>
         <div class="buttons">
-            <button>C</button>
-            <button><img src="img/divide.png"></button>
-            <button>×</button>
-            <button><img src="img/delete.png"></button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendValue('/')"><img src="img/divide.png"></button>
+            <button onclick="appendValue('*')">×</button>
+            <button onclick="deleteLast()"><img src="img/delete.png"></button>
 
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>-</button>
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('-')">-</button>
 
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>+</button>
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('+')">+</button>
 
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>.</button>
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="appendValue('.')">.</button>
 
-            <button class="zero">0</button>
-            <button><img src="img/exponentiation.png"></button>
-            <button class="equal">=</button>
+            <button onclick="appendValue('0')" class="zero">0</button>
+            <button onclick="appendValue('^')"><img src="img/exponentiation.png"></button>
+            <button onclick="calculate()" class="equal">=</button>
 
-            <button>(</button>
-            <button>)</button>
-            <button>√</button>
+            <button onclick="appendValue('(')">(</button>
+            <button onclick="appendValue(')')">)</button>
+            <button onclick="appendValue('sqrt(')">√</button>
         </div>
     </div>
 
