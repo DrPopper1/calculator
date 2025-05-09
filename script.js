@@ -1,7 +1,6 @@
 const display = document.getElementById('display');
 const historyBox = document.getElementById('history');
 let history;
-let currentExpression = '';
 
 if (localStorage.getItem('saved')) {
     history = JSON.parse(localStorage.getItem('saved'));
@@ -9,41 +8,34 @@ if (localStorage.getItem('saved')) {
     history = [];
 }
 
-function updateDisplayForUser(expression) {
-    return expression.replace(/sqrt\(/g, '√(');
-}
-
 function appendValue(value) {
     if (display.value === 'Ошибка') {
         display.value = '';
     }
-    currentExpression += value;
-    display.value = updateDisplayForUser(currentExpression);
+    display.value += value;
 }
 
 function clearDisplay() {
     display.value = '';
-    currentExpression = '';
 }
 
 function deleteLast() {
     if (display.value === 'Ошибка') {
         display.value = '';
     }
-    currentExpression = currentExpression.slice(0, -1);
-    display.value = updateDisplayForUser(currentExpression);
+    display.value = display.value.slice(0, -1);
 }
 
 function calculate() {
-    if (currentExpression != "") {
+    if (display.value != "") {
         try {
             const expression = display.value;
-            const result = math.evaluate(currentExpression);
+            display.value = math.evaluate(display.value);
+            const result = math.evaluate(expression);
             display.value = result;
             addToHistory(expression, result);
         } catch {
             display.value = 'Ошибка';
-            currentExpression = '';
         }
     }
 }
@@ -111,35 +103,27 @@ document.addEventListener('keydown', function (event) {
 function toggleTheme() {
     const body = document.body;
     const fade = document.getElementById('themeFade');
-    const circle = document.getElementById('circle');
   
-    fade.style.opacity = '0.4';
+    fade.style.opacity = '0.5';
   
     setTimeout(() => {
       body.classList.toggle('dark');
-      const isDark = body.classList.contains('dark');
   
+      const isDark = body.classList.contains('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
   
-      if (isDark) {
-        circle.style.left = '32px';
-        circle.textContent = '☀️';
-      } else {
-        circle.style.left = '2px';
-        circle.textContent = '🌙';
-      }
+      document.getElementById('themeToggle').textContent = isDark ? '☀️ Светлая тема' : '🌙 Тёмная тема';
   
       fade.style.opacity = '0';
-    }, 150);
-}
+    }, 200);
+  }
 
 window.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     
     if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
-        circle.style.left = '32px';
-        document.getElementById('circle').textContent = '☀️';
+      document.body.classList.add('dark');
+      document.getElementById('themeToggle').textContent = '☀️ Светлая тема';
     }
 });  
 
