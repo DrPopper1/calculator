@@ -18,13 +18,13 @@
     <div class="calculator">
         <button onclick="toggleTheme()" id="themeToggle">🌙 Тёмная тема</button>
 
-        <input type="text" class="display" id="display" disabled />
+        <input title="Выражение" placeholder="Нажмите на кнопки" type="text" class="display" id="display" disabled />
         <div class="history" id="history"></div>
         <div class="buttons">
             <button onclick="clearDisplay()">C</button>
-            <button onclick="appendValue('/')"><img src="img/divide.png"></button>
+            <button onclick="appendValue('/')"><img src="img/divide.png" alt="разделить"></button>
             <button onclick="appendValue('*')">×</button>
-            <button onclick="deleteLast()"><img src="img/delete.png"></button>
+            <button onclick="deleteLast()"><img src="img/delete.png" alt="удалить"></button>
 
             <button onclick="appendValue('7')">7</button>
             <button onclick="appendValue('8')">8</button>
@@ -42,16 +42,18 @@
             <button onclick="appendValue('.')">.</button>
 
             <button onclick="appendValue('0')" class="zero">0</button>
-            <button onclick="appendValue('^')"><img src="img/exponentiation.png"></button>
+            <button onclick="appendValue('^')"><img src="img/exponentiation.png" alt="возвести в степень"></button>
             <button onclick="calculate()" class="equal">=</button>
 
             <button onclick="appendValue('(')">(</button>
             <button onclick="appendValue(')')">)</button>
-            <button onclick="appendValue('sqrt(')">√</button>
+            <button class="up" onclick="appendValue('sqrt(')">√</button>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.js"
+    integrity="sha384-2NnkIgIitZUPvVF20yEtYm3encP/kCjZ8nxchj4j7cbqmRi9jaVLYz/Pwn/ZgWQ6"
+    crossorigin="anonymous"></script>></script>
     <script src="script.js"></script>
 </body>
 </html>

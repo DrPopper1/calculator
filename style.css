@@ -102,16 +102,18 @@ img {
 }
 
 .history {
-    max-height: 80px;
     overflow-y: auto;
     font-size: 14px;
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 8px;
+    -webkit-user-select: none;
     user-select: none;
     background-color: var(--history-bg);
     color: var(--text-color);
+    overflow-y: auto;
+    height: 50px;
 }
   
 .history div {
@@ -126,6 +128,7 @@ img {
 
 .del {
     float: right;
+    -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
     box-shadow: 2px 1px 1px rgba(255, 0, 0, 0.1);
@@ -184,3 +187,44 @@ img {
     font-weight: bolder;
     margin-bottom: 20px;
 }
+
+@media (max-width: 767px) {
+    body {
+        height: auto;
+    }
+
+    .calculator {
+        padding: 10px;
+        width: auto;
+    }
+
+    * {
+        font-size: 12px;
+    }
+
+    #themeToggle {
+        padding: 3px 6px;
+    }
+
+    button {
+        height: 35px;
+    }
+
+    .buttons {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .equal {
+        height: 80px;
+    }
+
+    .up {
+        grid-column: span 2;
+    }
+
+    #themeFade {
+        height: 150vh;
+    }
+}
+/* @media (min-width: 768px) and (max-width: 1023px) {} */
+/* @media (min-width: 1024px) {} */
